@@ -1,0 +1,70 @@
+{
+  "info": {
+    "name": "Travel Planner API",
+    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
+    "description": "Postman collection for testing Travel Planner FastAPI project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8000",
+          "path": [""]
+        }
+      }
+    },
+    {
+      "name": "Generate Travel Plan",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"location\": \"Hyderabad\",\n  \"days\": 3,\n  \"preferences\": \"historical sites, food, shopping\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/generate-plan",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8000",
+          "path": ["generate-plan"]
+        }
+      }
+    },
+    {
+      "name": "Get Travel Suggestions",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"best places to visit in Delhi\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/suggestions",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "8000",
+          "path": ["suggestions"]
+        }
+      }
+    }
+  ]
+}

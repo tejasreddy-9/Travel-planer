@@ -1,0 +1,37 @@
+{
+  "info": {
+    "name": "AI Travel Planner",
+    "_postman_id": "travel-planner-collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Plan",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"user123\",\n  \"destination\": \"Paris, France\",\n  \"start_date\": \"2025-09-10\",\n  \"end_date\": \"2025-09-12\",\n  \"preferences\": \"museums, walking, budget\",\n  \"travelers\": 2\n}"
+        },
+        "url": { "raw": "http://localhost:8000/api/v1/plan", "host": ["http://localhost:8000"], "path": ["api","v1","plan"] }
+      }
+    },
+    {
+      "name": "Get Plan",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "http://localhost:8000/api/v1/plan/{{plan_id}}", "host": ["http://localhost:8000"], "path": ["api","v1","plan","{{plan_id}}"] }
+      }
+    },
+    {
+      "name": "Search",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "http://localhost:8000/api/v1/search?destination=Paris", "host": ["http://localhost:8000"], "path": ["api","v1","search"], "query":[{"key":"destination","value":"Paris"}] }
+      }
+    }
+  ]
+}

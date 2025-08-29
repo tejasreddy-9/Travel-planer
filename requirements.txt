@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+motor               # async MongoDB client
+pydantic
+langchain
+langchain-huggingface
+langchain-community
+huggingface_hub
+requests
