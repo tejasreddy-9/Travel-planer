@@ -1,7 +1,7 @@
 fastapi
-uvicorn[standard]
+uvicorn
 python-dotenv
-motor               # async MongoDB client
+motor               
 pydantic
 langchain
 langchain-huggingface

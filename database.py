@@ -1,15 +1,8 @@
-import os
-from dotenv import load_dotenv
-from pymongo import MongoClient
+from motor.motor_asyncio import AsyncIOMotorClient
 
-load_dotenv()  # 👈 this loads .env file
+MONGO_URI = "mongodb+srv://tejasreddyis9999:lVZEvYKJNmlZ5NMy@cluster0.gsgmxva.mongodb.net/?retryWrites=true&w=majority"
+client = AsyncIOMotorClient(MONGO_URI)
 
-MONGODB_URI = os.getenv("MONGODB_URI")
-if not MONGODB_URI:
-    raise RuntimeError("Set MONGODB_URI in .env")
-
-
-client = MongoClient(MONGODB_URI)
 db = client["travel_planner"]
 plans_collection = db["plans"]
 feedback_collection = db["feedback"]
