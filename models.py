@@ -10,6 +10,10 @@ class PlanRequest(BaseModel):
     preferences: Optional[str] = None
     budget: int
     num_of_members:int
+<<<<<<< HEAD
+=======
+    start_point:Optional[str] = None
+>>>>>>> a77d7f7c21daf073a98f31736dda19d3dc5cb611
     travelers: Optional[int] = 1
 
 class PlanResponse(BaseModel):
@@ -30,6 +34,7 @@ class Traveler(BaseModel):
     role: str = "member"   # "leader" or "member"
 
 class GroupTripRequest(BaseModel):
+<<<<<<< HEAD
     user_id: str
     destination: str
     dates: str
@@ -37,6 +42,15 @@ class GroupTripRequest(BaseModel):
     members: int          # total number of members
     total_budget: int     # total budget for the trip
     travelers: List[Traveler]
+=======
+    trip_id: str
+    destination: str
+    start_date: str
+    end_date: str
+    travelers: List[Traveler]
+    budget: int
+    transport_mode: str   # train / flight / bus
+>>>>>>> a77d7f7c21daf073a98f31736dda19d3dc5cb611
 
 class BookingRequest(BaseModel):
     user_id: str
