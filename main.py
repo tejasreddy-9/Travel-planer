@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from routes import router  # ✅ import router from routes.py
+from routes import router  # import router from routes.py
 
 app = FastAPI(title="Travel Planner API")
 
-# ✅ include the router
+# include the router
 app.include_router(router)
 
 @app.get("/")
