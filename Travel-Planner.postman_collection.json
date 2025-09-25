@@ -1,70 +1,134 @@
 {
   "info": {
     "name": "Travel Planner API",
-    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
-    "description": "Postman collection for testing Travel Planner FastAPI project",
+    "_postman_id": "b8c2d9a4-56f7-41a6-b2df-1123456789ab",
+    "description": "Postman collection for Travel Planner FastAPI project",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Health Check",
+      "name": "Get Available Locations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/v1/locations"
+      }
+    },
+    {
+      "name": "Create Plan",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"user123\",\n  \"start_point\": \"Hyderabad\",\n  \"destination\": \"delhi\",\n  \"start_date\": \"2025-10-01\",\n  \"end_date\": \"2025-10-05\",\n  \"preferences\": \"sightseeing, shopping\",\n  \"travelers\": 2,\n  \"budget\": 30000,\n  \"num_of_members\": 2\n}"
+        },
+        "url": "{{base_url}}/api/v1/plan"
+      }
+    },
+    {
+      "name": "Get Plan by User ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/v1/plan/user123"
+      }
+    },
+    {
+      "name": "Get Suggestions",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"query\": \"delhi\" }"
+        },
+        "url": "{{base_url}}/api/v1/suggestions"
+      }
+    },
+    {
+      "name": "Search Plans",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/",
-          "protocol": "http",
-          "host": ["127", "0", "0", "1"],
-          "port": "8000",
-          "path": [""]
+          "raw": "{{base_url}}/api/v1/search?destination=delhi",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "search"],
+          "query": [{ "key": "destination", "value": "delhi" }]
         }
       }
     },
     {
-      "name": "Generate Travel Plan",
+      "name": "Submit Feedback",
       "request": {
         "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"location\": \"Hyderabad\",\n  \"days\": 3,\n  \"preferences\": \"historical sites, food, shopping\"\n}"
-        },
+        "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/generate-plan",
-          "protocol": "http",
-          "host": ["127", "0", "0", "1"],
-          "port": "8000",
-          "path": ["generate-plan"]
+          "raw": "{{base_url}}/api/v1/feedback?plan_id=12345&rating=5&comment=Great+plan",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "feedback"],
+          "query": [
+            { "key": "plan_id", "value": "12345" },
+            { "key": "rating", "value": "5" },
+            { "key": "comment", "value": "Great plan" }
+          ]
         }
       }
     },
     {
-      "name": "Get Travel Suggestions",
+      "name": "Group Trip Planner",
       "request": {
         "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"query\": \"best places to visit in Delhi\"\n}"
+          "raw": "{\n  \"destination\": \"goa\",\n  \"members\": 4,\n  \"total_budget\": 60000\n}"
         },
-        "url": {
-          "raw": "http://127.0.0.1:8000/suggestions",
-          "protocol": "http",
-          "host": ["127", "0", "0", "1"],
-          "port": "8000",
-          "path": ["suggestions"]
-        }
+        "url": "{{base_url}}/api/v1/group_trip"
       }
+    },
+    {
+      "name": "Create Group Trip",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"trip_id\": \"trip001\",\n  \"destination\": \"goa\",\n  \"start_date\": \"2025-11-01\",\n  \"end_date\": \"2025-11-05\",\n  \"budget\": 80000,\n  \"transport_mode\": \"train\",\n  \"travelers\": [\n    { \"name\": \"Teja\", \"age\": 24, \"gender\": \"M\", \"contact\": \"9999999999\", \"role\": \"Leader\" }\n  ]\n}"
+        },
+        "url": "{{base_url}}/api/v1/group-trip"
+      }
+    },
+    {
+      "name": "Book Trip",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"user123\",\n  \"destination\": \"delhi\",\n  \"budget\": 25000,\n  \"transport_mode\": \"flight\"\n}"
+        },
+        "url": "{{base_url}}/api/v1/book"
+      }
+    },
+    {
+      "name": "Update Booking Details",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"user123\",\n  \"destination\": \"mumbai\",\n  \"budget\": 40000,\n  \"transport_mode\": \"train\"\n}"
+        },
+        "url": "{{base_url}}/api/v1/update_details"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
     }
   ]
 }
